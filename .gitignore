@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Environment
+.env
+
+# Python
+__pycache__/
+*.egg-info/
+*.pyc
+
+# Assessment output (generated at runtime)
+assessment-output/
+
+# Editor / tool configs
+.obsidian/
+.qodo/
+.firecrawl/
+.claude-home/
+
+# Temporary / scratch files
+.tmp-*
+*-smoke*.mjs
+
+# Claude Code audit log and local settings (generated at runtime)
+.claude/grc-audit.log
+.claude/settings.local.json

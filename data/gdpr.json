@@ -1,0 +1,11 @@
+{
+  "framework": "GDPR",
+  "version": "2016",
+  "controls": [
+    {
+      "id": "Art.32",
+      "name": "Security of processing",
+      "requirements": ["Implement appropriate technical and organizational measures"]
+    }
+  ]
+}

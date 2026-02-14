@@ -1,0 +1,11 @@
+{
+  "framework": "ISO 27001",
+  "version": "2022",
+  "controls": [
+    {
+      "id": "A.5.15",
+      "name": "Access control",
+      "requirements": ["Implement access control policy and controls"]
+    }
+  ]
+}

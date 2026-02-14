@@ -1,0 +1,11 @@
+{
+  "framework": "SOC 2",
+  "version": "2017",
+  "controls": [
+    {
+      "id": "CC6.1",
+      "name": "Logical access security",
+      "requirements": ["Restrict logical access to authorized users"]
+    }
+  ]
+}

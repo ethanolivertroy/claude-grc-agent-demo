@@ -1,0 +1,11 @@
+{
+  "framework": "CSA CCM",
+  "version": "4",
+  "controls": [
+    {
+      "id": "IAM-02",
+      "name": "User access authorization",
+      "requirements": ["Authorize user access based on business need"]
+    }
+  ]
+}

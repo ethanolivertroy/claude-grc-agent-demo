@@ -1,0 +1,138 @@
+{
+  "system-security-plan": {
+    "uuid": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+    "metadata": {
+      "title": "CloudAI Platform System Security Plan",
+      "last-modified": "2026-02-09T00:00:00Z",
+      "version": "1.0",
+      "oscal-version": "1.2.0",
+      "roles": [
+        { "id": "system-owner", "title": "System Owner" },
+        { "id": "isso", "title": "Information System Security Officer" }
+      ],
+      "parties": [
+        {
+          "uuid": "77777777-7777-7777-7777-777777777777",
+          "type": "organization",
+          "name": "CloudAI Inc."
+        }
+      ]
+    },
+    "import-profile": {
+      "href": "https://raw.githubusercontent.com/usnistgov/oscal-content/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_MODERATE-baseline_profile.json"
+    },
+    "system-characteristics": {
+      "system-ids": [
+        {
+          "identifier-type": "https://fedramp.gov",
+          "id": "FR-2026-CLOUDAI-001"
+        }
+      ],
+      "system-name": "CloudAI Platform",
+      "description": "CloudAI Platform is a FedRAMP Moderate cloud-based AI/ML platform providing secure model training, inference, and data pipeline services for federal agencies. Deployed on AWS GovCloud (US).",
+      "security-sensitivity-level": "moderate",
+      "system-information": {
+        "information-types": [
+          {
+            "title": "Controlled Unclassified Information",
+            "categorization": [
+              {
+                "system": "https://doi.org/10.6028/NIST.SP.800-60v2r1",
+                "information-type-id": "C.2.4.1",
+                "confidentiality-impact": { "base": "moderate" },
+                "integrity-impact": { "base": "moderate" },
+                "availability-impact": { "base": "low" }
+              }
+            ]
+          }
+        ]
+      },
+      "security-impact-level": {
+        "security-objective-confidentiality": "moderate",
+        "security-objective-integrity": "moderate",
+        "security-objective-availability": "low"
+      },
+      "status": {
+        "state": "operational"
+      },
+      "authorization-boundary": {
+        "description": "The CloudAI Platform boundary includes the application layer, API gateway, container orchestration platform, and data stores deployed on AWS GovCloud (US). The underlying IaaS is provided by AWS GovCloud under a FedRAMP High JAB P-ATO and is outside the authorization boundary."
+      }
+    },
+    "system-implementation": {
+      "users": [
+        {
+          "uuid": "88888888-8888-8888-8888-888888888888",
+          "role-ids": ["system-owner"],
+          "title": "System Administrator"
+        }
+      ],
+      "components": [
+        {
+          "uuid": "33333333-3333-3333-3333-333333333333",
+          "type": "this-system",
+          "title": "CloudAI Platform",
+          "description": "The CloudAI Platform application layer, API gateway, container orchestration, and data stores.",
+          "status": { "state": "operational" }
+        },
+        {
+          "uuid": "44444444-4444-4444-4444-444444444444",
+          "type": "leveraged-system",
+          "title": "AWS GovCloud (US)",
+          "description": "Underlying IaaS provided by AWS GovCloud under FedRAMP High JAB P-ATO.",
+          "status": { "state": "operational" }
+        }
+      ]
+    },
+    "control-implementation": {
+      "description": "NIST SP 800-53 Rev 5 controls implemented for FedRAMP Moderate baseline.",
+      "implemented-requirements": [
+        {
+          "uuid": "11111111-1111-1111-1111-111111111111",
+          "control-id": "ac-2",
+          "statements": [
+            {
+              "statement-id": "ac-2_smt",
+              "uuid": "22222222-2222-2222-2222-222222222222",
+              "by-components": [
+                {
+                  "component-uuid": "33333333-3333-3333-3333-333333333333",
+                  "description": "Service Provider System Specific: The CloudAI Platform defines and documents account types including individual user accounts, privileged administrator accounts, service accounts, and emergency break-glass accounts. Account managers are designated by the ISSO for each account group. Accounts require documented approval via access request form (ARF) signed by supervisor and ISSO. Accounts are reviewed quarterly, and inactive accounts are disabled after 90 days.",
+                  "implementation-status": {
+                    "state": "implemented"
+                  }
+                },
+                {
+                  "component-uuid": "44444444-4444-4444-4444-444444444444",
+                  "description": "Inherited from AWS GovCloud: Physical and hypervisor-level account management for the underlying infrastructure is inherited from the AWS GovCloud FedRAMP High P-ATO (JAB). AWS manages IAM for the infrastructure layer per their SSP.",
+                  "implementation-status": {
+                    "state": "implemented"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "uuid": "55555555-5555-5555-5555-555555555555",
+          "control-id": "ir-4",
+          "statements": [
+            {
+              "statement-id": "ir-4_smt",
+              "uuid": "66666666-6666-6666-6666-666666666666",
+              "by-components": [
+                {
+                  "component-uuid": "33333333-3333-3333-3333-333333333333",
+                  "description": "Service Provider System Specific: The organization maintains incident response procedures consistent with IR-PL-001. Incident handling includes preparation, detection and analysis, containment, eradication, and recovery phases. Incidents are coordinated with internal stakeholders. Gap: No formal incident tracking system deployed; incidents tracked via email. External coordination with US-CERT/CISA documented in IRP but not exercised.",
+                  "implementation-status": {
+                    "state": "partial"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,196 @@
+# Claude GRC Agent
+
+
+https://github.com/user-attachments/assets/5c63ad55-f68b-4b30-abcc-0a2314ea96aa
+
+
+
+
+Multi-framework GRC agent built with the [Claude Agent SDK](https://www.npmjs.com/package/@anthropic-ai/claude-agent-sdk). Analyzes SSPs, policies, AI system cards, and evidence artifacts against federal and industry security frameworks, producing structured assessment findings with POA&M entries.
+
+## Key Capabilities
+
+- **Enhancement-level FedRAMP assessment** — evaluates controls and their enhancements (e.g., AC-2, AC-2(1) through AC-2(5)) individually against baseline requirements
+- **FIPS 199 baseline selection** — applies the high-water mark across confidentiality/integrity/availability to determine FedRAMP baseline and DoD Impact Level (IL2–IL6)
+- **Control origination tracking** — captures the FedRAMP shared responsibility model (inherited, shared, service provider system, customer responsibility)
+- **Federal-standard POA&M entries** — generates POA&M findings with milestones, risk-based remediation timelines, source tracking, deviation request flags, and vendor dependency indicators
+- **Cross-framework mapping** — maps controls across NIST 800-53, NIST 800-171, CMMC, ISO 27001, SOC 2, and AI governance frameworks
+- **AI governance assessment** — classifies EU AI Act risk tier, evaluates NIST AI RMF maturity, and assesses AI systems alongside traditional security controls
+- **Multi-artifact reasoning** — cross-references SSPs, policies, system cards, and evidence to build a holistic compliance picture
+- **Continuous monitoring awareness** — tracks assessment coverage, scan findings, and significant changes
+
+## Supported Frameworks
+
+| Category | Frameworks |
+|----------|-----------|
+| Federal | NIST 800-53 Rev 5, FedRAMP (Low/Moderate/High), FISMA |
+| Defense | CMMC 2.0 (L1–L3), NIST 800-171, DFARS 252.204-7012 |
+| AI Governance | NIST AI RMF, EU AI Act, ISO 42001, OECD AI Principles, White House AI EO 14110 |
+| Privacy | NIST Privacy Framework, GDPR, CCPA |
+| Industry | ISO 27001, SOC 2, CSA CCM |
+
+## Project Structure
+
+```
+claude-grc-agent/
+├── src/
+│   ├── agent.ts                  # CLI entrypoint (assess + convert subcommands)
+│   ├── grc-agent.ts              # Assessment orchestration (query, evidence, prompt)
+│   ├── oscal-convert.ts          # OSCAL SSP conversion orchestrator
+│   ├── repl.ts                   # Interactive REPL for follow-up questions
+│   ├── mcp/
+│   │   ├── grc-tools.ts          # 10 MCP tools (control lookup, FIPS 199, POA&M, OSCAL scaffold, etc.)
+│   │   └── grc-server.ts         # MCP server registration
+│   ├── schemas/
+│   │   ├── grc-schema.ts         # JSON schema for assessment output
+│   │   └── oscal-ssp-schema.ts   # JSON schema for OSCAL SSP output
+│   ├── subagents/
+│   │   └── index.ts              # 6 specialist subagents
+│   ├── data/
+│   │   ├── data-loader.ts
+│   │   └── framework-data.ts
+│   ├── mappings/
+│   │   └── framework-mapper.ts
+│   └── tools/
+│       └── fs-tools.ts
+├── data/                         # Framework datasets (JSON)
+├── examples/                     # Sample SSPs, policies, system cards, OSCAL
+└── .claude/                      # Claude Code hooks, skills, and settings
+```
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 20+ or Python 3.10+
+- Claude Code CLI (`npm install -g @anthropic-ai/claude-code`)
+- Authenticated CLI (`claude auth login`) or `ANTHROPIC_API_KEY` env var
+- `ANTHROPIC_API_KEY` is required for end-to-end runs.
+
+- `docling` for DOCX OSCAL conversion (`python -m pip install docling`).  
+  The TypeScript conversion path calls the `docling` CLI; the Python path imports `docling` directly.
+
+### Where is `claude` installed?
+
+The SDK needs to know the exact Claude executable path if you are not using default install locations.
+
+```bash
+which claude
+command -v claude
+```
+
+Set it explicitly in `.env` (or shell) before running:
+
+```bash
+export CLAUDE_CODE_EXECUTABLE="$(command -v claude)"
+```
+
+If `which claude` fails, try these common paths and set the one that exists:
+`~/.local/bin/claude`, `/usr/local/bin/claude`, `/opt/homebrew/bin/claude`, `/usr/bin/claude`.
+
+### Compliance and deployment note
+
+This repo is a demo implementation and does not implement a compliance certification boundary by itself. Provider selection, FedRAMP/IL5/authority-to-operate controls, network segmentation, encryption posture, logging retention, and other security controls are deployment decisions outside this codebase.
+
+### Install and Run (TypeScript)
+
+```bash
+npm install
+npm run build
+npm run start -- --framework "NIST 800-53" --baseline "FedRAMP Moderate" --scope "demo" examples/sample-ssp.md
+```
+
+### Install and Run (Python)
+
+```bash
+cd python
+pip install -e .
+grc-agent --framework "NIST 800-53" --baseline "FedRAMP Moderate" --scope "demo" ../examples/sample-ssp.md
+```
+
+### Example Commands
+
+```bash
+# FedRAMP Moderate assessment with full SSP
+npm run start -- --framework "NIST 800-53" --baseline "FedRAMP Moderate" --scope "demo" examples/sample-ssp.md
+
+# CMMC Level 2 assessment
+npm run start -- --framework "CMMC" --baseline "Level 2" --scope "demo" examples/sample-ssp-cmmc.md
+
+# AI governance (EU AI Act)
+npm run start -- --framework "EU AI Act" --baseline "High Risk" --scope "demo" examples/sample-ai-system-card.md
+
+# Federal + AI intersection (CUI-processing AI system)
+npm run start -- --framework "CMMC" --baseline "Level 2" --scope "demo" examples/sample-ai-system-federal.md
+
+# Multi-artifact assessment
+npm run start -- --framework "NIST 800-53" --baseline "FedRAMP Moderate" --scope "demo" examples/sample-ssp.md examples/sample-policy.md examples/sample-ai-system-card.md
+
+# OSCAL SSP
+npm run start -- --framework "NIST 800-53" --baseline "FedRAMP Moderate" --scope "demo" examples/sample-oscal-ssp.json
+
+# Interactive mode — run assessment then ask follow-up questions
+npm run start -- -i --framework "NIST 800-53" --baseline "FedRAMP Moderate" --scope "demo" examples/sample-ssp.md
+```
+
+### Interactive Mode
+
+Add `--interactive` (or `-i`) to run the assessment and then enter a REPL for follow-up questions:
+
+```bash
+# TypeScript
+npm run start -- --interactive --framework "NIST 800-53" --baseline "FedRAMP Moderate" --scope "demo" examples/sample-ssp.md
+
+# Python
+grc-agent --interactive --framework "NIST 800-53" --baseline "FedRAMP Moderate" --scope "demo" ../examples/sample-ssp.md
+```
+
+After the assessment completes, a `grc>` prompt appears. Ask follow-up questions about findings, request evidence guidance, or type `json` to dump the full assessment. The agent retains conversation context across turns via session resume.
+
+### OSCAL SSP Conversion
+
+Convert existing SSP documents (markdown or DOCX) to machine-readable OSCAL SSP JSON for FedRAMP 20X and automated validation pipelines:
+
+```bash
+# TypeScript
+npm run start -- convert --to oscal-ssp examples/sample-ssp.md
+npm run start -- convert --to oscal-ssp --output my-ssp.json examples/sample-ssp.docx
+
+# Python
+grc-agent convert --to oscal-ssp ../examples/sample-ssp.md
+grc-agent convert --to oscal-ssp --output my-ssp.json ../examples/sample-ssp.docx
+```
+
+The conversion is agent-driven: the orchestrator reads the input SSP, and the agent uses the `oscal_ssp_scaffold` tool for structure reference and `control_lookup` to validate control IDs. Output is constrained to valid OSCAL SSP JSON via structured output schema. DOCX input requires `docling` installed and available.
+
+Also available as a REPL command: `convert oscal-ssp <path>`.
+
+## MCP Tools
+
+| Tool | Purpose |
+|------|---------|
+| `control_lookup` | Retrieve control requirements, assessment objectives, and FedRAMP enhancement hierarchy |
+| `framework_mapper` | Map controls across frameworks using crosswalk data |
+| `gap_analyzer` | Compare implementation descriptions against control requirements |
+| `evidence_validator` | Check evidence artifacts for control coverage |
+| `finding_generator` | Create POA&M entries with federal-standard fields and risk-based timelines |
+| `cmmc_level_checker` | Determine achievable CMMC level and gaps to next level |
+| `ai_risk_classifier` | Classify EU AI Act risk tier and map to NIST AI RMF functions |
+| `baseline_selector` | FIPS 199 high-water mark categorization → FedRAMP baseline + DoD Impact Level |
+| `oscal_ssp_scaffold` | Return OSCAL SSP skeleton with required sections and field descriptions for conversion |
+| `oscal_mapping_scaffold` | Return OSCAL mapping-collection skeleton for framework crosswalk conversion |
+
+## Environment
+
+Copy `.env.example` to `.env` and add your `ANTHROPIC_API_KEY`. Optionally set:
+- `CLAUDE_MODEL` (defaults to `claude-sonnet-4-5-20250929`)
+- `CLAUDE_CODE_EXECUTABLE` (or `CLAUDE_CODE_PATH`) for explicit binary resolution
+- `GRC_MAX_TURNS` (defaults to `50`) to cap autonomous turns for faster/cheaper smoke tests
+
+Alternatively, authenticate via `claude auth login`.
+
+## Notes
+
+- Framework data files are starter subsets demonstrating the data model. Swap with full datasets for production use.
+- The architecture supports drop-in data replacement without code changes.
+- See `examples/sample-prompts.md` for prompt ideas.

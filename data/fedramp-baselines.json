@@ -1,0 +1,59 @@
+{
+  "framework": "FedRAMP",
+  "version": "Rev 5",
+  "baselines": [
+    {
+      "baseline": "Low",
+      "description": "Low-impact information systems per FIPS 199",
+      "fips_199": { "confidentiality": "low", "integrity": "low", "availability": "low" },
+      "approximate_control_count": 125,
+      "controls": ["AC-2", "IR-4"],
+      "dod_impact_levels": ["IL2"],
+      "notes": "Starter subset — AC and IR families only. Replace with full baseline for production use."
+    },
+    {
+      "baseline": "Moderate",
+      "description": "Moderate-impact information systems per FIPS 199. Covers ~80% of federal cloud authorizations.",
+      "fips_199": { "confidentiality": "moderate", "integrity": "moderate", "availability": "low" },
+      "approximate_control_count": 325,
+      "controls": ["AC-2", "AC-2(1)", "AC-2(2)", "AC-2(3)", "AC-2(4)", "AC-2(5)", "IR-4", "IR-4(1)"],
+      "dod_impact_levels": ["IL2", "IL4"],
+      "notes": "Starter subset — AC and IR families only. FedRAMP Moderate adds parameter assignments and enhancements beyond NIST SP 800-53 Moderate baseline."
+    },
+    {
+      "baseline": "High",
+      "description": "High-impact information systems per FIPS 199. Required for systems processing classified or national security data.",
+      "fips_199": { "confidentiality": "high", "integrity": "high", "availability": "high" },
+      "approximate_control_count": 421,
+      "controls": ["AC-2", "AC-2(1)", "AC-2(2)", "AC-2(3)", "AC-2(4)", "AC-2(5)", "AC-2(11)", "AC-2(12)", "AC-2(13)", "IR-4", "IR-4(1)", "IR-4(4)", "IR-4(5)", "IR-4(8)"],
+      "dod_impact_levels": ["IL4", "IL5", "IL6"],
+      "notes": "Starter subset — AC and IR families only. FedRAMP High aligns with DoD IL5/IL6 when combined with DISA SRG overlays."
+    }
+  ],
+  "dod_impact_levels": {
+    "IL2": {
+      "description": "Public and non-CUI data on commercial cloud",
+      "fedramp_baseline_required": "Moderate",
+      "additional_controls": "None beyond FedRAMP"
+    },
+    "IL4": {
+      "description": "Controlled Unclassified Information (CUI)",
+      "fedramp_baseline_required": "Moderate",
+      "additional_controls": "DISA Cloud Computing SRG IL4 overlay"
+    },
+    "IL5": {
+      "description": "CUI and mission-critical data requiring higher protection",
+      "fedramp_baseline_required": "High",
+      "additional_controls": "DISA Cloud Computing SRG IL5 overlay, NIST 800-171 CUI requirements"
+    },
+    "IL6": {
+      "description": "Classified information up to SECRET",
+      "fedramp_baseline_required": "High",
+      "additional_controls": "CNSSI 1253, ICD 503, DISA Cloud Computing SRG IL6 overlay, classified system authorization"
+    }
+  },
+  "fips_199_methodology": {
+    "description": "FIPS 199 categorization uses the high-water mark approach: the overall system impact level equals the highest impact level among confidentiality, integrity, and availability.",
+    "example": "A system with Moderate confidentiality, Low integrity, and Low availability has an overall categorization of Moderate."
+  }
+}

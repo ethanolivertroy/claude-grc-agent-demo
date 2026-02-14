@@ -1,0 +1,59 @@
+{
+  "framework": "NIST AI RMF",
+  "version": "1.0",
+  "functions": [
+    {
+      "id": "GOVERN",
+      "name": "Govern",
+      "categories": [
+        {
+          "id": "GV.1",
+          "name": "Policies, processes, and practices are in place",
+          "requirements": [
+            "Establish and maintain AI governance policies",
+            "Assign roles and responsibilities for AI risk management"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "MAP",
+      "name": "Map",
+      "categories": [
+        {
+          "id": "MA.1",
+          "name": "Context is established",
+          "requirements": [
+            "Define intended purpose and context of AI system"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "MEASURE",
+      "name": "Measure",
+      "categories": [
+        {
+          "id": "ME.1",
+          "name": "AI system performance is evaluated",
+          "requirements": [
+            "Evaluate AI system performance and reliability"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "MANAGE",
+      "name": "Manage",
+      "categories": [
+        {
+          "id": "MG.1",
+          "name": "Risk treatments are implemented",
+          "requirements": [
+            "Implement risk treatment plans for AI systems"
+          ]
+        }
+      ]
+    }
+  ]
+}

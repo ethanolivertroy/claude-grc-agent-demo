@@ -1,0 +1,11 @@
+{
+  "framework": "OECD AI Principles",
+  "version": "2019",
+  "controls": [
+    {
+      "id": "P1",
+      "name": "Inclusive growth and well-being",
+      "requirements": ["AI should benefit people and the planet"]
+    }
+  ]
+}

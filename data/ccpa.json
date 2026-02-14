@@ -1,0 +1,11 @@
+{
+  "framework": "CCPA",
+  "version": "2020",
+  "controls": [
+    {
+      "id": "1798.100",
+      "name": "Consumer right to know",
+      "requirements": ["Provide disclosure of collected personal information"]
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "framework": "White House EO 14110",
+  "version": "2023",
+  "controls": [
+    {
+      "id": "Sec.4.1",
+      "name": "Safety and security standards",
+      "requirements": ["Develop and use standards for AI safety testing"]
+    }
+  ]
+}

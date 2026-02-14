@@ -1,0 +1,53 @@
+{
+  "framework": "CMMC",
+  "version": "2.0",
+  "levels": [
+    {
+      "level": "Level 1",
+      "practices": [
+        {
+          "id": "AC.L1-3.1.1",
+          "name": "Limit system access to authorized users",
+          "nist_800_171_id": "3.1.1",
+          "requirements": [
+            "Limit system access to authorized users, processes, and devices"
+          ]
+        }
+      ]
+    },
+    {
+      "level": "Level 2",
+      "practices": [
+        {
+          "id": "AC.L2-3.1.2",
+          "name": "Limit system access to transactions and functions",
+          "nist_800_171_id": "3.1.2",
+          "requirements": [
+            "Limit system access to the types of transactions and functions"
+          ]
+        },
+        {
+          "id": "IR.L2-3.6.1",
+          "name": "Establish incident handling capability",
+          "nist_800_171_id": "3.6.1",
+          "requirements": [
+            "Establish an operational incident handling capability"
+          ]
+        }
+      ]
+    },
+    {
+      "level": "Level 3",
+      "practices": [
+        {
+          "id": "IR.L3-3.6.2",
+          "name": "Track, document, and report incidents",
+          "nist_800_171_id": "3.6.2",
+          "requirements": [
+            "Track, document, and report incidents to designated officials"
+          ]
+        }
+      ]
+    }
+  ]
+}

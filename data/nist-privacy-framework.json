@@ -1,0 +1,11 @@
+{
+  "framework": "NIST Privacy Framework",
+  "version": "1.0",
+  "controls": [
+    {
+      "id": "ID.PO-1",
+      "name": "Policies, processes, and practices",
+      "requirements": ["Establish privacy policies and procedures"]
+    }
+  ]
+}

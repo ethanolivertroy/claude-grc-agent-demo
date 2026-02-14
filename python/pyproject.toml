@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "claude-grc-agent"
+version = "0.1.0"
+description = "Multi-framework GRC compliance agent built on the Claude Agent SDK"
+requires-python = ">=3.10"
+dependencies = [
+    "claude-agent-sdk",
+    "anyio",
+]
+
+[project.scripts]
+grc-agent = "grc_agent.agent:main"

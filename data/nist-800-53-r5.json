@@ -1,0 +1,165 @@
+{
+  "framework": "NIST 800-53",
+  "revision": "5",
+  "controls": [
+    {
+      "id": "AC-2",
+      "name": "Account Management",
+      "family": "AC",
+      "requirements": [
+        "Define and document account types allowed on the system",
+        "Assign account managers",
+        "Establish conditions for group and role membership",
+        "Specify authorized users and access authorizations",
+        "Require approvals for account creation requests",
+        "Create, enable, modify, disable, and remove accounts in accordance with policy",
+        "Monitor use of accounts",
+        "Notify account managers when accounts are no longer required, users are terminated or transferred, or system usage changes",
+        "Authorize access based on valid access authorization, intended system usage, and organizational approval",
+        "Review accounts for compliance on a defined frequency",
+        "Establish and enforce process for changing shared or group account credentials when members leave the group"
+      ],
+      "assessment_objectives": [
+        "Account types are defined and documented",
+        "Account managers are designated",
+        "Group and role membership conditions are established",
+        "Authorized users and access authorizations are specified",
+        "Account creation requires documented approval",
+        "Accounts are managed per documented lifecycle procedures",
+        "Account usage is monitored for atypical use",
+        "Notification procedures exist for account changes",
+        "Access authorization validates intended usage",
+        "Account reviews occur at the defined frequency",
+        "Shared/group credential change process is enforced"
+      ],
+      "parts": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k"],
+      "enhancements": ["AC-2(1)", "AC-2(2)", "AC-2(3)", "AC-2(4)", "AC-2(5)", "AC-2(7)", "AC-2(9)", "AC-2(10)", "AC-2(11)", "AC-2(12)", "AC-2(13)"],
+      "fedramp_baselines": {
+        "Low": { "required": true, "enhancements_required": [] },
+        "Moderate": { "required": true, "enhancements_required": ["AC-2(1)", "AC-2(2)", "AC-2(3)", "AC-2(4)", "AC-2(5)"] },
+        "High": { "required": true, "enhancements_required": ["AC-2(1)", "AC-2(2)", "AC-2(3)", "AC-2(4)", "AC-2(5)", "AC-2(11)", "AC-2(12)", "AC-2(13)"] }
+      }
+    },
+    {
+      "id": "AC-2(1)",
+      "name": "Automated System Account Management",
+      "family": "AC",
+      "parent_control": "AC-2",
+      "requirements": [
+        "Support management of system accounts using automated mechanisms"
+      ],
+      "assessment_objectives": [
+        "Automated mechanisms are employed to support account lifecycle management"
+      ],
+      "fedramp_baselines": {
+        "Low": { "required": false },
+        "Moderate": { "required": true },
+        "High": { "required": true }
+      }
+    },
+    {
+      "id": "AC-2(2)",
+      "name": "Automated Temporary and Emergency Account Management",
+      "family": "AC",
+      "parent_control": "AC-2",
+      "requirements": [
+        "Automatically remove or disable temporary and emergency accounts after a defined time period"
+      ],
+      "assessment_objectives": [
+        "Temporary accounts are automatically removed or disabled after the defined time period",
+        "Emergency accounts are automatically removed or disabled after the defined time period"
+      ],
+      "fedramp_parameters": {
+        "temporary_account_expiration": "no more than 24 hours",
+        "emergency_account_expiration": "no more than 72 hours"
+      },
+      "fedramp_baselines": {
+        "Low": { "required": false },
+        "Moderate": { "required": true },
+        "High": { "required": true }
+      }
+    },
+    {
+      "id": "AC-2(3)",
+      "name": "Disable Accounts",
+      "family": "AC",
+      "parent_control": "AC-2",
+      "requirements": [
+        "Disable accounts when the accounts have been inactive for a defined time period"
+      ],
+      "assessment_objectives": [
+        "Accounts are disabled after the organization-defined time period of inactivity"
+      ],
+      "fedramp_parameters": {
+        "inactivity_period": "90 days for user accounts"
+      },
+      "fedramp_baselines": {
+        "Low": { "required": false },
+        "Moderate": { "required": true },
+        "High": { "required": true }
+      }
+    },
+    {
+      "id": "AC-2(4)",
+      "name": "Automated Audit Actions",
+      "family": "AC",
+      "parent_control": "AC-2",
+      "requirements": [
+        "Automatically audit account creation, modification, enabling, disabling, and removal actions"
+      ],
+      "assessment_objectives": [
+        "Account creation actions are automatically audited",
+        "Account modification actions are automatically audited",
+        "Account disabling actions are automatically audited",
+        "Account removal actions are automatically audited"
+      ],
+      "fedramp_baselines": {
+        "Low": { "required": false },
+        "Moderate": { "required": true },
+        "High": { "required": true }
+      }
+    },
+    {
+      "id": "AC-2(5)",
+      "name": "Inactivity Logout",
+      "family": "AC",
+      "parent_control": "AC-2",
+      "requirements": [
+        "Require users to log out when the organization-defined time period of expected inactivity is exceeded"
+      ],
+      "assessment_objectives": [
+        "Users are required to log out after the defined inactivity period"
+      ],
+      "fedramp_parameters": {
+        "inactivity_logout_period": "15 minutes for FedRAMP Moderate, 10 minutes for FedRAMP High"
+      },
+      "fedramp_baselines": {
+        "Low": { "required": false },
+        "Moderate": { "required": true },
+        "High": { "required": true }
+      }
+    },
+    {
+      "id": "IR-4",
+      "name": "Incident Handling",
+      "family": "IR",
+      "requirements": [
+        "Implement an incident handling capability that includes preparation, detection and analysis, containment, eradication, and recovery",
+        "Coordinate incident handling activities with contingency planning activities",
+        "Incorporate lessons learned from ongoing incident handling activities into incident response procedures, training, and testing"
+      ],
+      "assessment_objectives": [
+        "An incident handling capability is implemented consistent with the incident response plan",
+        "Incident handling activities are coordinated with contingency planning activities",
+        "Lessons learned are incorporated from ongoing incident handling"
+      ],
+      "parts": ["a", "b", "c"],
+      "enhancements": ["IR-4(1)", "IR-4(4)", "IR-4(5)", "IR-4(8)"],
+      "fedramp_baselines": {
+        "Low": { "required": true, "enhancements_required": [] },
+        "Moderate": { "required": true, "enhancements_required": ["IR-4(1)"] },
+        "High": { "required": true, "enhancements_required": ["IR-4(1)", "IR-4(4)", "IR-4(5)", "IR-4(8)"] }
+      }
+    }
+  ]
+}

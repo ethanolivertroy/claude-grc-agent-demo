@@ -1,0 +1,11 @@
+{
+  "framework": "FISMA",
+  "version": "2014",
+  "controls": [
+    {
+      "id": "FISMA-REQ-1",
+      "name": "Security program",
+      "requirements": ["Develop and maintain an information security program"]
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "framework": "EU AI Act",
+  "version": "2024",
+  "risk_tiers": [
+    {
+      "tier": "unacceptable",
+      "examples": ["social scoring", "subliminal manipulation"],
+      "requirements": [
+        "Prohibited AI practices must not be deployed"
+      ]
+    },
+    {
+      "tier": "high",
+      "examples": ["biometric identification", "critical infrastructure"],
+      "requirements": [
+        "Implement risk management system",
+        "Maintain technical documentation",
+        "Ensure human oversight"
+      ]
+    },
+    {
+      "tier": "limited",
+      "examples": ["chatbots", "recommendation systems"],
+      "requirements": [
+        "Provide transparency to users"
+      ]
+    },
+    {
+      "tier": "minimal",
+      "examples": ["spam filters"],
+      "requirements": [
+        "No specific obligations beyond general law"
+      ]
+    }
+  ]
+}

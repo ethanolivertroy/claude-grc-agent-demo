@@ -1,0 +1,11 @@
+{
+  "framework": "DFARS 252.204-7012",
+  "version": "2019",
+  "controls": [
+    {
+      "id": "DFARS-7012",
+      "name": "Safeguarding covered defense information",
+      "requirements": ["Implement NIST 800-171 security requirements"]
+    }
+  ]
+}

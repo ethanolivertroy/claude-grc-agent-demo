@@ -1,0 +1,20 @@
+{
+  "framework": "ISO 42001",
+  "version": "2023",
+  "controls": [
+    {
+      "id": "A.5.1",
+      "name": "AI policy",
+      "requirements": [
+        "Establish an AI policy aligned to organizational objectives"
+      ]
+    },
+    {
+      "id": "A.6.2",
+      "name": "AI risk management",
+      "requirements": [
+        "Maintain a documented AI risk management process"
+      ]
+    }
+  ]
+}
