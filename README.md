@@ -1,5 +1,7 @@
 # Claude GRC Agent
 
+> **Disclaimer:** This is an independent, community-driven project and is not affiliated with, endorsed by, or officially associated with Anthropic or Claude. The author is an independent developer contributing to open source and demonstrating how these tools can be used in real-world workflows. Claude, Anthropic, and any related marks are property of their respective owners.
+
 
 https://github.com/user-attachments/assets/5c63ad55-f68b-4b30-abcc-0a2314ea96aa
 
